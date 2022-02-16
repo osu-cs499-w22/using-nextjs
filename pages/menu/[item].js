@@ -30,11 +30,15 @@ export default function MenuItem() {
   console.log("== menuItem:", menuItem);
   return (
     <Layout>
-      <h1>{menuItem.name}</h1>
-      <h2>{menuItem.price} - {menuItem.description}</h2>
-      <div>
-        <img src={menuItem.image} />
-      </div>
+      {menuItem && (
+        <>
+          <h1>{menuItem.name}</h1>
+          <h2>{menuItem.price} - {menuItem.description}</h2>
+          <div>
+            <img src={menuItem.image} />
+          </div>
+        </>
+      )}
     </Layout>
   )
 }
