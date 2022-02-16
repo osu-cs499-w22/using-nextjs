@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import Layout from '../../components/Layout';
 
@@ -24,20 +23,18 @@ const menu = {
   }
 };
 
-export default function Menu() {
+export default function MenuItem() {
   const router = useRouter();
+  console.log("== router.query:", router.query);
+  const menuItem = menu[router.query.item];
+  console.log("== menuItem:", menuItem);
   return (
     <Layout>
-      <h1>Menu</h1>
-      <ul>
-        {Object.keys(menu).map(item => (
-          <li key={item}>
-            <Link href={`${router.asPath}/${item}`}>
-              <a>{menu[item].name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <h1>{menuItem.name}</h1>
+      <h2>{menuItem.price} - {menuItem.description}</h2>
+      <div>
+        <img src={menuItem.image} />
+      </div>
     </Layout>
-  );
+  )
 }
